@@ -1,0 +1,13 @@
+body {
+    width: 100vw;
+    height: 100vh;
+}
+#allContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+.movie-container {
+    height: 400px;
+    width: 250px;
+}
