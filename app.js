@@ -80,7 +80,7 @@ MongoClient.connect(url, function (err, db) {
                                                 imagedata += chunk
                                             });
                                             res.on('end', function () {
-                                                fs.writeFile("client/images/posters/" + movieName + '.jpg', imagedata, 'binary', function (err) {
+                                                fs.writeFile("client/images/posters/" + data.results[0].poster_path, imagedata, 'binary', function (err) {
                                                     if (err) throw err
                                                     console.log('Poster image saved')
                                                 });
@@ -90,7 +90,7 @@ MongoClient.connect(url, function (err, db) {
                                         backdropOptions = {
                                             host: "image.tmdb.org"
                                             , port: 80
-                                            , path: "/t/p/w500" + data.results[0].backdrop_path
+                                            , path: "/t/p/w1920" + data.results[0].backdrop_path
                                         }
                                         var request = http.get(backdropOptions, function (res) {
                                             var imagedata = ''
@@ -99,7 +99,7 @@ MongoClient.connect(url, function (err, db) {
                                                 imagedata += chunk
                                             });
                                             res.on('end', function () {
-                                                fs.writeFile("client/images/backdrops/" + movieName + '.jpg', imagedata, 'binary', function (err) {
+                                                fs.writeFile("client/images/backdrops/" + data.results[0].backdrop_path, imagedata, 'binary', function (err) {
                                                     if (err) throw err
                                                     console.log('Backdrop image saved')
                                                 });

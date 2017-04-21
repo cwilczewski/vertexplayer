@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 849 159" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:1.41421;">
+    <g transform="matrix(1,0,0,1,-1195,-177)">
+        <g id="Artboard1" transform="matrix(1.6582,0,0,1.54186,-242.662,1130.8)">
+            <rect x="867" y="-618" width="512" height="101.925" style="fill:none;"/>
+            <g transform="matrix(0.889652,0,0,0.95678,886.074,-946.907)">
+                <text x="143.75px" y="423.388px" style="font-family:'Gotham-Light', 'Gotham';font-weight:300;font-size:87.253px;">V<tspan x="217.915px 285.1px 356.036px 421.301px 488.486px " y="423.388px 423.388px 423.388px 423.388px 423.388px ">ERTEX</tspan></text>
+            </g>
+            <g transform="matrix(0.672119,0,0,0.722833,482.258,-796.162)">
+                <path d="M724.266,316L630.918,316L578.343,249.119L724.266,316Z" style="fill:rgb(255,0,61);fill-rule:nonzero;"/>
+                <path d="M578.343,385.881L630.918,319L724.266,319L578.343,385.881Z" style="fill:rgb(196,0,61);fill-rule:nonzero;"/>
+                <path d="M575,250.634L627.575,317.515L575,384.397L575,250.634Z" style="fill:rgb(229,0,55);fill-rule:nonzero;"/>
+            </g>
+        </g>
+    </g>
+</svg>

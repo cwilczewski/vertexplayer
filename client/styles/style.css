@@ -1,13 +1,166 @@
+* {
+    font-family: 'Montserrat';
+}
+
 body {
     width: 100vw;
     height: 100vh;
+    position: relative;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
+#movie-backdrop {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-size: cover;
+}
+
+#bg-overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 2;
+}
+
+.wrapper {
+    position: absolute;
+    padding: 4%;
+    z-index: 999;
+    width: 100vw;
+    height: 100vh;
+}
+
+#logo {
+    width: 18vw
+}
+
 #allContainer {
+    position: absolute;
+    z-index: 999;
+    bottom: 6%;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
+    width: 50%;
 }
+
+
 .movie-container {
-    height: 400px;
-    width: 250px;
+    width: 18%;
+    cursor: pointer;
+    position: relative;
+}
+
+.btn {
+    opacity: 0;
+    transition: all 0.3s ease;
+    position: absolute;
+    color: white;
+    background: transparent;
+    border: 0;
+    font-size: 1.4em
+}
+
+.delete-movie {  
+    top: 2%;
+    left: 2%;
+}
+
+.edit-movie {
+    top: 2%;
+    right: 2%;
+}
+
+#movie-info {
+    margin: 4vh 0;
+}
+
+#movie-info h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 2.2em;
+}
+
+#movie-info p {
+    margin: 22px 0px;
+    font-weight: 200;
+    font-size: 1.5em;
+    width: 50%;
+    line-height: 1.4;
+    letter-spacing: 1px;
+}
+
+#movie-info h3 {
+    margin: 42px 0px;
+    font-weight: 300;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+#keycontainer {
+    width: 100%;
+}
+
+#write {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 0;
+    background-color: #E50037;
+    text-align: center;
+    height: auto;
+    width: 40%;
+    height: 80px;
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    letter-spacing: 1px;
+    transition: all 0.3s ease-in-out
+}
+#keyboard {
+    display: flex;
+    justify-content: space-between;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: 12px 0px;
+}
+.letter,
+.space,
+.delete {
+    text-transform: uppercase;
+    margin: 0;
+    cursor: pointer;
+    font-size: 1.6em;
+    padding: 6px;
+    font-weight: 200;
+    display: inline-block;
+    transition: all 0.3s ease;
+    border-radius: 4px;
+}
+.delete {
+    width: 60px
+}
+.letter:hover,
+.space:hover,
+.delete:hover {
+    color: white;
+    background-color: #E50037;
 }
