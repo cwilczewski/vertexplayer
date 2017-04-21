@@ -6,7 +6,7 @@ socket.on('data', function (data) {
     for (var titles in data) {
         var i = i + 1
         if (data.hasOwnProperty(titles)) {
-            var movieContainer = $('<div class="movie-container" id="' + data[titles]._id + '" movie-name="' + data[titles].file_name + '"> </div>');
+            var movieContainer = $('<div class="movie-container" id="' + data[titles]._id + '" movie-name="' + data[titles].file_name + '"><div class="movie-overlay"></div></div>');
             var moviePoster = $("<img class='movie-poster' src='images/posters" + data[titles].poster_path + "'>")
             var movieText = $("<div class='movie-text'></div>");
             var movieTitle = $("<h1 class='movie-title'>" + data[titles].title + " " + "</h1>");
@@ -88,10 +88,13 @@ socket.on('data', function (data) {
         console.log(mtd);
         socket.emit('delete', mtd);
     });
-    $('.movie-container').mouseover(function () {
+    //Function for mouseover, can't use hover as that would make info disappear on mouseout
+    $('.movie-container').click(function () {
         var selected = $(this);
+        $('#write').val("");
+        searchShow();
         selected.children('.btn').css('opacity', '1')
-        $('#movie-info').fadeOut(500, function () {
+        $('#movie-info').fadeOut(200, function () {
             var meta = selected.attr('id');
             console.log(meta)
             for (var titles in data) {
@@ -101,53 +104,57 @@ socket.on('data', function (data) {
                     $('#movie-cast').text('Starring: ' + data[titles].cast.join(', '));
                 };
             };
-            $('#movie-info').fadeIn(500);
+            $('#movie-info').fadeIn(200);
         })
-        $('#movie-backdrop').fadeOut(500, function () {
+        $('#movie-backdrop').fadeOut(200, function () {
             var meta = selected.attr('id');
             for (var titles in data) {
                 if (data[titles]._id == meta) {
                     $('#movie-backdrop').css('background-image', 'url(images/backdrops' + data[titles].backdrop_path + ')')
                 }
             }
-            $('#movie-backdrop').fadeIn(500);
+            $('#movie-backdrop').fadeIn(200);
         })
     });
+    //Hides buttons on mouse out
+    $('.movie-container').mouseover(function () {
+        var selected = $(this);
+        selected.children('.btn').css('opacity', '1')
+        selected.children('.movie-overlay').css('opacity', '1')
+    })
     $('.movie-container').mouseout(function () {
         var selected = $(this);
         selected.children('.btn').css('opacity', '0')
+        selected.children('.movie-overlay').css('opacity', '0')
     })
-    
-    
+
     //Handles search box functionality
-    $(function () {
-        var $write = $('#write'),
-            shift = false,
-            capslock = false;
-        $('#keyboard li').click(function () {
-            var $this = $(this),
-                character = $this.html();
-            // Delete
-            if ($this.hasClass('delete')) {
-                var html = $write.val();
-                $write.val(html.substr(0, html.length - 1));
-                searchShow();
-                return false;
-            }
-            //Space
-            if ($this.hasClass('space')) character = ' ';
-            // Add the character
-            $write.val($write.val() + character);
+    var $write = $('#write'),
+        shift = false,
+        capslock = false;
+    $('#keyboard li').click(function () {
+        var $this = $(this),
+            character = $this.html();
+        // Delete
+        if ($this.hasClass('delete')) {
+            var html = $write.val();
+            $write.val(html.substr(0, html.length - 1));
             searchShow();
-        });
-        //Shows the search box
-        function searchShow() {
-            if ($write.val()) {
-                $write.css('top', '0px')
-            } else if ($write.val().length < 1) {
-                $write.css('top', '-80px')
-            }
+            return false;
         }
-        searchShow()
+        //Space
+        if ($this.hasClass('space')) character = ' ';
+        // Add the character
+        $write.val($write.val() + character);
+        searchShow();
     });
+    //Shows the search box
+    function searchShow() {
+        if ($write.val()) {
+            $write.css('top', '0px')
+        } else if ($write.val().length < 1) {
+            $write.css('top', '-80px')
+        }
+    }
+    searchShow()
 });
