@@ -115,6 +115,7 @@ MongoClient.connect(url, function (err, db) {
                                                     , title: data.results[0].title
                                                     , real_name: movieName
                                                     , file_name: f
+                                                    , last_time: 0
                                                     , overview: data.results[0].overview
                                                     , release_date: data.results[0].release_date
                                                     , poster_path: data.results[0].poster_path
