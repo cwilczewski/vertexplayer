@@ -1,1 +1,21 @@
-# vertexplayer
+## Vertex Player
+
+![vertex logo](data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+Cjxzdmcgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDg0OSAxNTkiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkO3N0cm9rZS1saW5lam9pbjpyb3VuZDtzdHJva2UtbWl0ZXJsaW1pdDoxLjQxNDIxOyI+CiAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgxLDAsMCwxLC0xMTk1LC0xNzcpIj4KICAgICAgICA8ZyBpZD0iQXJ0Ym9hcmQxIiB0cmFuc2Zvcm09Im1hdHJpeCgxLjY1ODIsMCwwLDEuNTQxODYsLTI0Mi42NjIsMTEzMC44KSI+CiAgICAgICAgICAgIDxyZWN0IHg9Ijg2NyIgeT0iLTYxOCIgd2lkdGg9IjUxMiIgaGVpZ2h0PSIxMDEuOTI1IiBzdHlsZT0iZmlsbDpub25lOyIvPgogICAgICAgICAgICA8ZyB0cmFuc2Zvcm09Im1hdHJpeCgwLjg4OTY1MiwwLDAsMC45NTY3OCw4ODYuMDc0LC05NDYuOTA3KSI+CiAgICAgICAgICAgICAgICA8dGV4dCB4PSIxNDMuNzVweCIgeT0iNDIzLjM4OHB4IiBzdHlsZT0iZm9udC1mYW1pbHk6J0dvdGhhbS1MaWdodCcsICdHb3RoYW0nO2ZvbnQtd2VpZ2h0OjMwMDtmb250LXNpemU6ODcuMjUzcHg7Ij5WPHRzcGFuIHg9IjIxNy45MTVweCAyODUuMXB4IDM1Ni4wMzZweCA0MjEuMzAxcHggNDg4LjQ4NnB4ICIgeT0iNDIzLjM4OHB4IDQyMy4zODhweCA0MjMuMzg4cHggNDIzLjM4OHB4IDQyMy4zODhweCAiPkVSVEVYPC90c3Bhbj48L3RleHQ+CiAgICAgICAgICAgIDwvZz4KICAgICAgICAgICAgPGcgdHJhbnNmb3JtPSJtYXRyaXgoMC42NzIxMTksMCwwLDAuNzIyODMzLDQ4Mi4yNTgsLTc5Ni4xNjIpIj4KICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik03MjQuMjY2LDMxNkw2MzAuOTE4LDMxNkw1NzguMzQzLDI0OS4xMTlMNzI0LjI2NiwzMTZaIiBzdHlsZT0iZmlsbDpyZ2IoMjU1LDAsNjEpO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTU3OC4zNDMsMzg1Ljg4MUw2MzAuOTE4LDMxOUw3MjQuMjY2LDMxOUw1NzguMzQzLDM4NS44ODFaIiBzdHlsZT0iZmlsbDpyZ2IoMTk2LDAsNjEpO2ZpbGwtcnVsZTpub256ZXJvOyIvPgogICAgICAgICAgICAgICAgPHBhdGggZD0iTTU3NSwyNTAuNjM0TDYyNy41NzUsMzE3LjUxNUw1NzUsMzg0LjM5N0w1NzUsMjUwLjYzNFoiIHN0eWxlPSJmaWxsOnJnYigyMjksMCw1NSk7ZmlsbC1ydWxlOm5vbnplcm87Ii8+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=)
+
+A continuation of a previous project called MovieBox. A sleek and stylish personal media player controlled from your mobile device.
+
+## Overview
+
+Vertex uses web technology to create a personal media player that is lightweight and easy to use. While in it's current state it only has a section for movies, it is planned to have sections for TV Shows, Music, Home Videos, Images, and potentially even apps like Netflix.
+
+## Why are we making it?
+
+We use media players in our lives all the time, whether it be Plex, AppleTV, or a NexusPlayer. We wanted to see if we can make our own version that works in a way we believe to be easier for the user. It's also a huge project that will challenge us, and we are always up for a challenge.
+
+## What does it run on?
+
+It uses Node.js, MongoDB, and good old HTML, CSS, & JS. It connects to The MovieDataBase API to get information on the movies that have been added, and stores that in the MongoDB which then gets called to the HTML page. The App allows a user to delete movies right from the interface, as well as edit an improperly matched file.
+
+## Planned features
+
+As previously mentioned, we plan on adding more categories to the media player than just movies. We are also working on a mobile device companion that allows users to navigate the player with ease, as well as using gestures to pause, play, and rewind/fast-forward movies.
