@@ -14,6 +14,7 @@ socket.on('data', function (data) {
             var movieGenre = data[titles].genre_ids;
             var delBtn = $("<button class='btn delete-movie'><i class='fa fa-trash' aria-hidden='true'></i></button>");
             var editBtn = $("<button class='btn edit-movie'><i class='fa fa-pencil-square-o' aria-hidden='true'></i></button>");
+            var playBtn = $("<button class='btn play-movie'>Play</button>");
             //            if (movieGenre == 28) {
             //                movieGenre = "<p id='genre' class='action'>Action</p>";
             //            }
@@ -79,7 +80,8 @@ socket.on('data', function (data) {
             $(movieContainer).append(delBtn);
             $(movieContainer).append(editBtn);
             $(movieText).append(movieTitle);
-        } else {}
+        }
+        else {}
     }
     $('.delete-movie').click(function () {
         console.log('delete');
@@ -102,8 +104,46 @@ socket.on('data', function (data) {
                     $('#movie-name').text(data[titles].title);
                     $('#movie-plot').text(data[titles].overview);
                     $('#movie-cast').text('Starring: ' + data[titles].cast.join(', '));
+                    $('#movie-info').append(playBtn);
+                    $('.filepath').val(data[titles].file_name);
                 };
             };
+            setTimeout(function () {
+                $('.play-movie').click(function () {
+                    var selectedMovie = $(this).parent('#movie-info').children('.filepath').val();
+                    var video = document.getElementById('videoPlayer');
+                    var source = document.createElement('source');
+                    var check = selectedMovie.includes('.mkv');
+                    source.setAttribute('src', selectedMovie);
+                    if (check == true){
+                        source.setAttribute('type', 'video/mp4');
+                    };
+                    video.appendChild(source);
+                    video.load()
+                    console.log(source);
+                    video.currentTime = 0;
+                    $('.player').css('visibility', 'visible');
+                    $('.player').css('opacity', '1');
+                    $('.player').css('display', 'inherit');
+                    setTimeout(function () {
+                        video.play();
+                    }, 2000);
+                    $('#close').css('visibility', 'visible');
+                    $('#close').css('opacity', '1');
+                });
+            }, 1000);
+            $('#close').click(function () {
+                console.log("clicked");
+                var player = $('.video-player');
+                var video = document.getElementById('videoPlayer');
+                $('.player').css('visibility', 'hidden');
+                $('.player').css('opacity', '0');
+                $('.player').css('display', 'none');
+                $('#close').css('visibility', 'hidden');
+                $('#close').css('opacity', '0');
+                video.pause();
+                $('#videoPlayer > source').remove()
+            })
             $('#movie-info').fadeIn(200);
         })
         $('#movie-backdrop').fadeOut(200, function () {
@@ -123,18 +163,17 @@ socket.on('data', function (data) {
         selected.children('.movie-overlay').css('opacity', '1')
     })
     $('.movie-container').mouseout(function () {
-        var selected = $(this);
-        selected.children('.btn').css('opacity', '0')
-        selected.children('.movie-overlay').css('opacity', '0')
-    })
-
-    //Handles search box functionality
-    var $write = $('#write'),
-        shift = false,
-        capslock = false;
+            var selected = $(this);
+            selected.children('.btn').css('opacity', '0')
+            selected.children('.movie-overlay').css('opacity', '0')
+        })
+        //Handles search box functionality
+    var $write = $('#write')
+        , shift = false
+        , capslock = false;
     $('#keyboard li').click(function () {
-        var $this = $(this),
-            character = $this.html();
+        var $this = $(this)
+            , character = $this.html();
         // Delete
         if ($this.hasClass('delete')) {
             var html = $write.val();
@@ -152,9 +191,77 @@ socket.on('data', function (data) {
     function searchShow() {
         if ($write.val()) {
             $write.css('top', '0px')
-        } else if ($write.val().length < 1) {
+        }
+        else if ($write.val().length < 1) {
             $write.css('top', '-80px')
         }
     }
     searchShow()
 });
+
+setTimeout(function () {
+    /* Get Our Elements */
+    const player = document.querySelector('.player');
+    const video = player.querySelector('.viewer');
+    const progress = player.querySelector('.progress');
+    const progressBar = player.querySelector('.progress-filled');
+    const toggle = player.querySelector('.toggle');
+    const skipButtons = player.querySelectorAll('[data-skip]');
+    const ranges = player.querySelectorAll('.player-slider');
+    /* Build out functions */
+    function togglePlay() {
+        const method = video.paused ? 'play' : 'pause';
+        video[method]();
+    }
+
+    function updateButton() {
+        const icon = this.paused ? '<img src="ui-images/play.png" alt="Play">' : '<img src="ui-images/pause.png" id="pause" alt="Pause">';
+        //  console.log(icon);
+        toggle.innerHTML = icon;
+    }
+
+    function skip() {
+        video.currentTime += parseFloat(this.dataset.skip);
+    }
+
+    function handleRangeUpdate() {
+        video[this.name] = this.value;
+    }
+
+    function handleProgress() {
+        const percent = (video.currentTime / video.duration) * 100;
+        progressBar.style.flexBasis = `${percent}%`;
+    }
+
+    function scrub(e) {
+        const scrubTime = (e.offsetX / progress.offsetWidth) * video.duration;
+        video.currentTime = scrubTime;
+    }
+    /* Hook up the event listners */
+    //video.addEventListener('click', togglePlay);
+    video.addEventListener('play', updateButton);
+    video.addEventListener('pause', updateButton);
+    video.addEventListener('timeupdate', handleProgress);
+    toggle.addEventListener('click', togglePlay);
+    skipButtons.forEach(button => button.addEventListener('click', skip));
+    ranges.forEach(range => range.addEventListener('change', handleRangeUpdate));
+    ranges.forEach(range => range.addEventListener('mousemove', handleRangeUpdate));
+    let mousedown = false;
+    progress.addEventListener('click', scrub);
+    progress.addEventListener('mousemove', (e) => mousedown && scrub(e));
+    progress.addEventListener('mousedown', () => mousedown = true);
+    progress.addEventListener('mouseup', () => mousedown = false);
+    var timeout = null;
+    $(document).on('mousemove', function () {
+        clearTimeout(timeout);
+        $('.controls').addClass('move');
+        $('.overlay').addClass('move');  
+        $('#close').css('opacity', '1') 
+        timeout = setTimeout(function () {
+            console.log('Mouse idle');
+            $('.controls').removeClass('move');
+            $('.overlay').removeClass('move'); 
+            $('#close').css('opacity', '0') 
+        }, 3000);
+    });
+}, 5000)

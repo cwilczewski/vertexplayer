@@ -13,19 +13,29 @@
 </head>
 
 <body>
-    <div id="movie-backdrop"></div>
-    <img src="ui-images/bg-overlay.png" id="bg-overlay">
+    <div class="player">
+        <div id="close">><img src="ui-images/back.png" alt="back"></div>
+        <video class='video-player viewer' id='videoPlayer'></video>
+        <div class="overlay">
+        </div>
+        <div class="controls">
+            <div class="progress">
+                <div class="progress-filled"></div>
+            </div>
+            <button class="player-button toggle" title="toggle play"><img src="ui-images/play.png" alt="Play"></button>
+            <button data-skip="-10" class="player-button back"><img src="ui-images/skip-b.png" alt="Skip 10s backwards"></button>
+            <button data-skip="30" class="player-button forward"><img src="ui-images/skip-f.png" alt="Skip 30s forward"></button>
+        </div>
+    </div>
+    <div id="movie-backdrop"></div> <img src="ui-images/bg-overlay.png" id="bg-overlay">
     <div class="wrapper">
-        <input type="text" id="write">
-        <img src="ui-images/logo.svg" alt="Vertex Logo" id="logo">
-
+        <input type="text" id="write"> <img src="ui-images/logo.svg" alt="Vertex Logo" id="logo">
         <div id="movie-info">
             <h1 id="movie-name"></h1>
             <p id="movie-plot"></p>
             <h3 id="movie-cast"></h3>
-        </div>
+            <input class="filepath" type="text" value=""> </div>
         <div id="allContainer">
-
             <div id="keycontainer">
                 <ul id="keyboard">
                     <li class="letter">a</li>
